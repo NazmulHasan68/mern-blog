@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';  
+import userRoutes from './routes/user.route.js'
 dotenv.config();
 
 const app = express();
@@ -13,9 +14,7 @@ connectDB();
 app.use(express.json());
 
 // route
-app.use('/', (req, res) => {
-  res.send('API is running...');
-});
+app.use('/api',userRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
