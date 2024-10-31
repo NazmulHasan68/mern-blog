@@ -24,3 +24,16 @@ app.use('/api',userRoutes);
 //auth route
 import AuthRooute from './routes/auth.route.js';
 app.use('/api/auth', AuthRooute)
+
+
+
+//middleware for error handle
+app.use((err, req, res, next)=>{
+  const statusCode = err.statusCode || 500;
+  const message = err.message || 'Internal server Error';
+  res.status(statusCode).json({
+    success : false,
+    statusCode,
+    message
+  })
+})
