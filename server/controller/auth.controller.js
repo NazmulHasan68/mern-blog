@@ -17,6 +17,7 @@ export const signupController = async(req, res, next)=>{
         try {
             const user = await newUser.save()
             res.json({
+                success:true,
                 message : 'signup successfull',
                 payload: user
             })

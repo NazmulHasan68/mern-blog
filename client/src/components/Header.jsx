@@ -41,7 +41,7 @@ export default function Header() {
         <Button className="w-10 h-10 flex justify-center items-center" color="gray">
           <FaMoon className="text-gray-800" size={20}/>
         </Button>
-        <Link to='/sign-in'>
+        <Link to='/sign-up'>
             <Button className="bg-green-500 hover:bg-green-600 text-sm">Sign In</Button>
         </Link>
         <Navbar.Toggle />
