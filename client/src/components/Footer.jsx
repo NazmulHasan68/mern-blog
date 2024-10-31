@@ -60,7 +60,7 @@ export default function FooterComponent() {
             </Footer.LinkGroup>
           </div>
         </div>
-        <div className="w-full flex sm:items-center sm:justify-between justify-center gap-10 border-t my-4 py-5">
+        <div className="w-full flex sm:items-center sm:justify-between justify-center gap-10 border-t my-4 py-5 mx-auto">
           <Footer.Copyright href="#" by="shadow blog" year={new Date().getFullYear()}/>
           <div className="flex gap-4">
             <Footer.Icon href="#" icon={FaFacebook}/>
