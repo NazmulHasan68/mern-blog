@@ -42,7 +42,7 @@ export default function Header() {
           <FaMoon className="text-gray-800" size={20}/>
         </Button>
         <Link to='/sign-up'>
-            <Button className="bg-green-500 hover:bg-green-600 text-sm">Sign In</Button>
+            <Button className="bg-green-500 hover:bg-green-600 text-sm">Sign UP</Button>
         </Link>
         <Navbar.Toggle />
       </div>
