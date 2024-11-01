@@ -1,12 +1,17 @@
-import { Button, Navbar, TextInput } from "flowbite-react";
+import { Avatar, Button, Dropdown, Navbar, TextInput } from "flowbite-react";
 import { Link , useLocation} from "react-router-dom";
-
+import { useSelector } from 'react-redux';
 //icons
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon } from "react-icons/fa6";
+import { FaUserCircle, FaSignOutAlt } from "react-icons/fa"; // Import icons
+
 
 export default function Header() {
   const path = useLocation()
+  const {currentUser} = useSelector(state=>state.user)
+  console.log(currentUser);
+
   return (
     <Navbar fluid={true} className="border-b">
       <Link to="/"className="self-center whitespace-nowrap font-semibold dark:text-white text-md sm:text-2xl">
@@ -41,9 +46,38 @@ export default function Header() {
         <Button className="w-10 h-10 flex justify-center items-center" color="gray">
           <FaMoon className="text-gray-800" size={20}/>
         </Button>
-        <Link to='/sign-up'>
-            <Button className="bg-green-500 hover:bg-green-600 text-sm">Sign UP</Button>
-        </Link>
+        {
+          currentUser ?
+           (
+            <Dropdown
+              arrowIcon={false}
+              inline
+              label={
+                <Avatar
+                alt={currentUser.username}
+                img={currentUser.profilePicture }
+                rounded
+              />
+              }
+            >
+              <Dropdown.Header>
+                <span className="block text-sm">@{currentUser.username}</span>
+                <span className="block text-sm font-medium truncate">{currentUser.email}</span>
+              </Dropdown.Header>
+              <Link to='/dashboard?tab=profile'>
+                <Dropdown.Item icon={FaUserCircle}>Profile</Dropdown.Item>
+              </Link>
+              <Dropdown.Divider/>
+              <Dropdown.Item icon={FaSignOutAlt}>Logout</Dropdown.Item>
+            </Dropdown>
+           ) 
+           :( 
+            <Link to='/sign-up'>
+                <Button className="bg-green-500 hover:bg-green-600 text-sm">Sign UP</Button>
+            </Link>
+           )
+        }
+       
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
