@@ -20,7 +20,7 @@ export default function Dashboard() {
         {/* sidebar */}
         <DashSidebar/>
       </div>
-      <div>
+      <div className="w-full">
       {/* profile */}
         <DashProfile/>
       </div>
