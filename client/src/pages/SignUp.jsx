@@ -51,7 +51,7 @@ export default function SignUp() {
         </span>
           Blog
       </Link>
-      <p className="text-sm mt-5 text-slate-500">This is demo project. you can sign up with your email and password or with google</p>
+      <p className="text-sm mt-5 ">This is demo project. you can sign up with your email and password or with google</p>
       </div>
         {/* Right side */}
       <div className="mt-4 sm:mt-0 flex-1">

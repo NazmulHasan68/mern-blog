@@ -1,16 +1,19 @@
 import { Avatar, Button, Dropdown, Navbar, TextInput } from "flowbite-react";
 import { Link , useLocation} from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector , useDispatch} from 'react-redux';
+
 //icons
 import { AiOutlineSearch } from "react-icons/ai";
-import { FaMoon } from "react-icons/fa6";
+import { FaMoon , FaSun} from "react-icons/fa6";
 import { FaUserCircle, FaSignOutAlt } from "react-icons/fa"; // Import icons
 
+import { toggleTheme } from '../redux/theme/ThemSlice';
 
 export default function Header() {
   const path = useLocation()
   const {currentUser} = useSelector(state=>state.user)
-  console.log(currentUser);
+  const dispatch = useDispatch()
+  const {theme} = useSelector(state=>state.theme)
 
   return (
     <Navbar fluid={true} className="border-b">
@@ -31,7 +34,7 @@ export default function Header() {
             />
             <AiOutlineSearch className="absolute right-2 top-3 text-gray-500 text-xl"/>
           </form>
-          <div className="sm:flex justify-center items-center gap-6 hidden font-normal text-gray-500">
+          <div className="sm:flex justify-center items-center gap-6 hidden font-normal ">
             <Link to='/'  className="hover:text-green-500 " active={path==='/'}>Home</Link>
             <Link to='/about'  className="hover:text-green-500 " active={path==='/about'}>About</Link>
             <Link to='/projects'  className="hover:text-green-500 " active={path==='/projects'}>Projects</Link>
@@ -43,8 +46,14 @@ export default function Header() {
       
 
       <div className="flex justify-between items-center gap-2 sm:order-2">
-        <Button className="w-10 h-10 flex justify-center items-center" color="gray">
-          <FaMoon className="text-gray-800" size={20}/>
+        <Button className="w-10 h-10 flex justify-center items-center" 
+          color="gray"
+          pill 
+          onClick={()=>dispatch(toggleTheme())}>
+            {
+              theme === 'light' ?  <FaMoon  size={20}/>:<FaSun size={20}/> 
+            }
+          
         </Button>
         {
           currentUser ?
