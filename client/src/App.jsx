@@ -8,6 +8,7 @@ import Projects from "./pages/Projects";
 import Error from "./pages/Error";
 import Header from "./components/Header";
 import FooterComponent from "./components/Footer";
+import PrivateRoute from "./components/PrivateRoute";
 function App() {
   return (
     <BrowserRouter>
@@ -18,7 +19,9 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/sign-in" element={<SignIn/>}/>
         <Route path="/sign-up" element={<SignUp/>}/>
-        <Route path="/dashboard" element={<Dashboard/>}/>
+        <Route element={<PrivateRoute/>}>
+            <Route path="/dashboard" element={<Dashboard/>}/>
+        </Route>
         <Route path="/projects" element={<Projects/>}/>
         <Route path="/*" element={<Error/>}/>
       </Routes>
