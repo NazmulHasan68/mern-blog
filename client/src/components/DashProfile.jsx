@@ -40,7 +40,7 @@ function DashProfile() {
             const res = await axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, formData)
             setImageFileUrl(res.data.secure_url)
         } catch (error) {
-            setimageFileUploadingError('Could not upload image (File must be less then 2MB) ')
+            setimageFileUploadingError('Could not upload image (File must be less then 2MB) ',error)
             setImageFileUrl(null)
             setImageFile(null)
         }
