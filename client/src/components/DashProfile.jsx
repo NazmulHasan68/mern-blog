@@ -2,7 +2,7 @@ import { Alert, Button, Modal, TextInput } from "flowbite-react"
 import { useRef, useState } from "react"
 import { useSelector , useDispatch} from "react-redux"
 import  axios  from 'axios'
-import { updateStart, updateFailure, updateSuccess ,deleteUserStart, deleteUserSuccess, deleteUserfailure} from "../redux/userSlice/userSlice"
+import { updateStart, updateFailure, updateSuccess ,deleteUserStart, deleteUserSuccess, deleteUserfailure, signOutSuccess} from "../redux/userSlice/userSlice"
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 
 function DashProfile() {
@@ -88,6 +88,23 @@ function DashProfile() {
         }
     }
 
+    const handleSignOut = async() =>{
+        try {
+            const res = await fetch('./api/user/signout', {
+                method : 'POST',
+
+            })
+            const data = await res.json()
+            if(!res.ok){
+                console.log(data.message);
+            }else{
+                dispatch(signOutSuccess())
+            }
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
     const handleDeleteUser = async()=>{
         setShowModel(false)
         try {
@@ -149,7 +166,7 @@ function DashProfile() {
       </form>
       <div className="text-red-500 flex justify-between my-4 w-full sm:max-w-md mx-auto">
         <span className=" cursor-pointer" onClick={()=>setShowModel(true)}>Delete Account</span>
-        <span className=" cursor-pointer">Logout</span>
+        <span className=" cursor-pointer" onClick={handleSignOut}>Logout</span>
       </div>
       {
         update && (

@@ -8,12 +8,30 @@ import { FaMoon , FaSun} from "react-icons/fa6";
 import { FaUserCircle, FaSignOutAlt } from "react-icons/fa"; // Import icons
 
 import { toggleTheme } from '../redux/theme/ThemSlice';
+import { signOutSuccess } from "../redux/userSlice/userSlice";
 
 export default function Header() {
   const path = useLocation()
   const {currentUser} = useSelector(state=>state.user)
   const dispatch = useDispatch()
   const {theme} = useSelector(state=>state.theme)
+
+  const handleSignOut = async() =>{
+    try {
+        const res = await fetch('./api/user/signout', {
+            method : 'POST',
+
+        })
+        const data = await res.json()
+        if(!res.ok){
+            console.log(data.message);
+        }else{
+            dispatch(signOutSuccess())
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+  }
 
   return (
     <Navbar fluid={true} className="border-b">
@@ -77,12 +95,12 @@ export default function Header() {
                 <Dropdown.Item icon={FaUserCircle}>Profile</Dropdown.Item>
               </Link>
               <Dropdown.Divider/>
-              <Dropdown.Item icon={FaSignOutAlt}>Logout</Dropdown.Item>
+              <Dropdown.Item icon={FaSignOutAlt} onClick={handleSignOut}>Logout</Dropdown.Item>
             </Dropdown>
            ) 
            :( 
             <Link to='/sign-up'>
-                <Button className="bg-green-500 hover:bg-green-600 text-sm">Sign UP</Button>
+                <Button className="bg-green-500 hover:bg-green-600 text-sm" >Sign UP</Button>
             </Link>
            )
         }
