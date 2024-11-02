@@ -20,6 +20,7 @@ const corsOrigin ={
   optionSuccessStatus:200
 }
 app.use(cors(corsOrigin))
+app.use('/public', express.static('public'));
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
@@ -34,11 +35,15 @@ app.use('/api/user',userRoutes);
 import AuthRooute from './routes/auth.route.js';
 app.use('/api/auth', AuthRooute)
 
+//post router 
+import PostRouter from './routes/post.route.js';
+app.use('/api/post', PostRouter)
+
 
 
 //middleware for error handle
 app.use((err, req, res, next)=>{
-  const statusCode = err.statusCode || 5000;
+  const statusCode = err.statusCode || 500;
   const message = err.message || 'Internal server Error';
   res.status(statusCode).json({
     success : false,
