@@ -1,12 +1,13 @@
 import { Alert, Button, Modal, TextInput } from "flowbite-react"
 import { useRef, useState } from "react"
+import { Link } from "react-router-dom";
 import { useSelector , useDispatch} from "react-redux"
 import  axios  from 'axios'
 import { updateStart, updateFailure, updateSuccess ,deleteUserStart, deleteUserSuccess, deleteUserfailure, signOutSuccess} from "../redux/userSlice/userSlice"
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 
 function DashProfile() {
-    const {currentUser, error} = useSelector(state => state.user)
+    const {currentUser, error, loading} = useSelector(state => state.user)
     const [imageFile, setImageFile] = useState(null)
     const [imageFileUrl, setImageFileUrl] = useState(null)
     const [imageFileUploadingError, setimageFileUploadingError] = useState(null)
@@ -159,9 +160,23 @@ function DashProfile() {
                 placeholder="password"  
                 onChange={handleChange}
             />
-            <Button type="submit" gradientDuoTone="greenToBlue">
-                Update
+            <Button type="submit" gradientDuoTone="greenToBlue" disabled={loading}>
+                {loading? 'Loading...' : 'Update'}
             </Button>
+            {
+                currentUser.isAdmin  && (
+                    <Link to='/create-post'>
+                        <Button
+                            type="button"
+                            outline gradientDuoTone="greenToBlue"
+                            className="w-full hover:bg-green-700"
+                        >
+                            create a post
+                        </Button>
+                    </Link>
+                    
+                )
+            }
        </div>
       </form>
       <div className="text-red-500 flex justify-between my-4 w-full sm:max-w-md mx-auto">

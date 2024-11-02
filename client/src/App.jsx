@@ -9,6 +9,8 @@ import Error from "./pages/Error";
 import Header from "./components/Header";
 import FooterComponent from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
+import OnlyPrivateRoute from "./components/OnlyPrivateRoute";
+import CreatePost from "./pages/CreatePost";
 function App() {
   return (
     <BrowserRouter>
@@ -21,6 +23,9 @@ function App() {
         <Route path="/sign-up" element={<SignUp/>}/>
         <Route element={<PrivateRoute/>}>
             <Route path="/dashboard" element={<Dashboard/>}/>
+        </Route>
+        <Route element={<OnlyPrivateRoute/>}>
+            <Route path="/dashboard/create-post" element={<CreatePost/>}/>
         </Route>
         <Route path="/projects" element={<Projects/>}/>
         <Route path="/*" element={<Error/>}/>
