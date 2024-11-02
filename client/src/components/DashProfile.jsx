@@ -14,7 +14,6 @@ function DashProfile() {
     const [update, setupdate] = useState('')
     const [updateError, setupdateError] = useState('')
     const [ showModel, setShowModel] = useState(false)
-
     const [formData, setformData] = useState({})
     const dispatch = useDispatch()
 
@@ -165,7 +164,7 @@ function DashProfile() {
             </Button>
             {
                 currentUser.isAdmin  && (
-                    <Link to='/create-post'>
+                    <Link to='/dashboard/create-post'>
                         <Button
                             type="button"
                             outline gradientDuoTone="greenToBlue"

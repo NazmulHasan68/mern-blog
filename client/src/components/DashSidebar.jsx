@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { Sidebar } from "flowbite-react";
-import { HiArrowSmRight, HiChartPie, HiHome, HiInbox, HiTable, HiUser, HiViewBoards } from "react-icons/hi";
+import { HiTable, HiUser,} from "react-icons/hi";
 import { signOutSuccess } from "../redux/userSlice/userSlice";
 import { useDispatch } from "react-redux";
 
