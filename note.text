@@ -25,4 +25,5 @@
 25. complete update user profile page functionality
 26. Add delete user API route
 27. complete delete account functionality
-18. add signout functionality
+28. add signout functionality
+29. add admin functionality to the user

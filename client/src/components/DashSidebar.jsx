@@ -47,31 +47,6 @@ function DashSidebar() {
                     Profile
                 </Sidebar.Item>
             </Link>
-            <Link to='/dashboard?tab=details'>
-                <Sidebar.Item href="#" active={tab === 'details'} icon={HiChartPie} as='div'>
-                    Details
-                </Sidebar.Item>
-            </Link>
-            <Link to='/dashboard?tab=post'>
-                <Sidebar.Item href="#" active={tab === 'post'} icon={HiViewBoards}  as='div' >
-                    Post
-                </Sidebar.Item>
-            </Link>
-            <Link to='/dashboard?tab=inbox'>
-                <Sidebar.Item href="#" active={tab === 'inbox'}icon={HiInbox}  label="3" as='div'>
-                    Inbox
-                </Sidebar.Item>
-            </Link>
-            <Link to='/dashboard?tab=home'>
-                <Sidebar.Item href="/" active={tab === 'home'} icon={HiHome} as='div'>
-                    Home
-                </Sidebar.Item>
-            </Link>
-            <Link to='/sign-in'>
-                <Sidebar.Item href="/sign-in" active={tab === 'sign-in'} icon={HiArrowSmRight} as='div'>
-                    Sign In
-                </Sidebar.Item>
-            </Link>
             <Link to='/dashboard?tab=logout' onClick={handleSignOut}>
                 <Sidebar.Item href="#" active={tab === 'logout'} icon={HiTable} as='div' >
                     logout
