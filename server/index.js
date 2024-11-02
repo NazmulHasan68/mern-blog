@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';  
 dotenv.config();
+import cors from 'cors'
 import cookieParser from 'cookie-parser'
 
 const app = express();
@@ -13,6 +14,13 @@ connectDB();
 // Middleware for parsing JSON
 app.use(express.json());
 app.use(cookieParser())
+const corsOrigin ={
+  origin:'http://localhost:5173', 
+  credentials:true,            
+  optionSuccessStatus:200
+}
+app.use(cors(corsOrigin))
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
@@ -30,7 +38,7 @@ app.use('/api/auth', AuthRooute)
 
 //middleware for error handle
 app.use((err, req, res, next)=>{
-  const statusCode = err.statusCode || 500;
+  const statusCode = err.statusCode || 5000;
   const message = err.message || 'Internal server Error';
   res.status(statusCode).json({
     success : false,
