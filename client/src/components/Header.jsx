@@ -35,7 +35,7 @@ export default function Header() {
     }
   }
 
-  console.log(currentUser);
+
   
 
   return (

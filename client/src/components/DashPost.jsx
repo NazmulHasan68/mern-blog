@@ -107,7 +107,7 @@ function DashPost() {
                   </span>
                 </Table.Cell>
                 <Table.Cell>
-                  <Link to={`/updated-post/${post._id}`}>
+                  <Link to={`/dashboard/update-post/${post._id}`}>
                     <span className="text-teal-500 hover:font-semibold">Edit</span>
                   </Link>
                 </Table.Cell>
@@ -122,7 +122,6 @@ function DashPost() {
           Show more
         </button>)
       }
-      
       </>
      
      ) : (
