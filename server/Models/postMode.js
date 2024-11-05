@@ -16,7 +16,7 @@ const PostSchema = new mongoose.Schema({
     },
     image : {
         type : String,
-        default : '../public/post/blog.png'
+        default : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaMVeSi-3VEacOxZ9rOlWJk_JvLN-2CFL12g&s'
     },
     category: {
         type :String,

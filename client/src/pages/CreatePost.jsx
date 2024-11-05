@@ -38,7 +38,7 @@ function CreatePost() {
     const submitFormData = async (e) => {
       e.preventDefault();
 
-      if (!formData.title || !formData.content || !formData.category || !formData.image) {
+      if (!formData.title || !formData.content || !formData.category ) {
         return alert("Please fill all the required fields including the image.");
       }
       try {
@@ -60,7 +60,7 @@ function CreatePost() {
       }
     };
 
-    console.log(formData);
+
 
     return (
       <div className="p-3 max-w-3xl mx-auto min-h-screen">

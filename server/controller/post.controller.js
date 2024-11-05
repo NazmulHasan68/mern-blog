@@ -82,8 +82,6 @@ export const getPostController = async (req, res, next) => {
 export const deletePostController = async(req, res, next) =>{
   if(!req.user.isAdmin || req.user.id !== req.params.userId){
     return next(errorHandler(403, 'You are not allowed to delete this post'))
-
-    
   }
   try {
     await Post.findByIdAndDelete(req.params.postId);
@@ -92,3 +90,39 @@ export const deletePostController = async(req, res, next) =>{
     next(error)
   }
 }
+
+export const updatepostController = async (req, res, next) => {
+  // Authorization check: Allow only admin or the post owner
+  if (!req.user.isAdmin && req.user.id !== req.params.userId) {
+    return next(errorHandler(403, 'You are not allowed to update this post'));
+  }
+
+  try {
+    // Check if the post exists
+    const post = await Post.findById(req.params.postId);
+    if (!post) {
+      return next(errorHandler(404, 'Post not found'));
+    }
+
+    // Update post
+    const updatedPost = await Post.findByIdAndUpdate(
+      req.params.postId,
+      {
+        $set: {
+          title: req.body.title,
+          content: req.body.content,
+          category: req.body.category,
+          image: req.body.image,
+        },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({
+      data : updatedPost
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
