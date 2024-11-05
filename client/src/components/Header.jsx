@@ -1,5 +1,5 @@
 import { Avatar, Button, Dropdown, Navbar, TextInput } from "flowbite-react";
-import { Link , useLocation} from "react-router-dom";
+import { Link , useLocation, useNavigate} from "react-router-dom";
 import { useSelector , useDispatch} from 'react-redux';
 
 //icons
@@ -11,6 +11,7 @@ import { toggleTheme } from '../redux/theme/ThemSlice';
 import { signOutSuccess } from "../redux/userSlice/userSlice";
 
 export default function Header() {
+  const navigate = useNavigate()
   const path = useLocation()
   const {currentUser} = useSelector(state=>state.user)
   const dispatch = useDispatch()
@@ -18,7 +19,7 @@ export default function Header() {
 
   const handleSignOut = async() =>{
     try {
-        const res = await fetch('./api/user/signout', {
+        const res = await fetch(`/api/user/signout`, {
             method : 'POST',
 
         })
@@ -27,11 +28,15 @@ export default function Header() {
             console.log(data.message);
         }else{
             dispatch(signOutSuccess())
+            navigate('/')
         }
     } catch (error) {
         console.log(error.message);
     }
   }
+
+  console.log(currentUser);
+  
 
   return (
     <Navbar fluid={true} className="border-b">

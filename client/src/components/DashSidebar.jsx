@@ -21,7 +21,7 @@ function DashSidebar() {
 
   const handleSignOut = async () => {
     try {
-      const res = await fetch("./api/user/signout", {
+      const res = await fetch(`/api/user/signout`, {
         method: "POST",
       });
       const data = await res.json();
@@ -40,47 +40,30 @@ function DashSidebar() {
       <Sidebar.Logo href="#">shadow</Sidebar.Logo>
       <Sidebar.Items>
         <Sidebar.ItemGroup className="flex flex-col gap-1">
-          {currentUser.isAdmin ? (
-            <>
-              <Link to="/dashboard?tab=profile">
-                <Sidebar.Item
-                  href="#"
-                  active={tab === "profile"}
-                  icon={HiUser}
-                  label="Admin"
-                  labelColor="light"
-                  as="div"
-                >
-                  Profile
-                </Sidebar.Item>
-              </Link>
-              <Link to="/dashboard?tab=posts">
-                <Sidebar.Item
-                  href="#"
-                  active={tab === "posts"}
-                  icon={HiDocumentText}
-                  labelColor="dark"
-                  as="div"
-                >
-                  Posts
-                </Sidebar.Item>
-              </Link>
-            </>
-          ) : (
-            <Link to="/dashboard?tab=profile">
-              <Sidebar.Item
+
+          <Link to="/dashboard?tab=profile">
+            <Sidebar.Item
                 href="#"
                 active={tab === "profile"}
                 icon={HiUser}
-                label="User"
+                label={currentUser.isAdmin ? "Admin" : "User"}
                 labelColor="light"
                 as="div"
-              >
+            >
                 Profile
               </Sidebar.Item>
-            </Link>
-          )}
-
+          </Link>
+          <Link to="/dashboard?tab=posts">
+            <Sidebar.Item
+                href="#"
+                active={tab === "posts"}
+                icon={HiDocumentText}
+                labelColor="dark"
+                as="div"
+            >
+              Posts
+            </Sidebar.Item>
+          </Link>
           <Link to="/dashboard?tab=logout" onClick={handleSignOut}>
             <Sidebar.Item
               href="#"

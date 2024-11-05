@@ -42,7 +42,7 @@ function CreatePost() {
         return alert("Please fill all the required fields including the image.");
       }
       try {
-        const response = await fetch('/api/post/create', {
+        const response = await fetch(`/api/post/create`, {
           method:"POST",
           headers:{'Content-Type': 'application/json'},
           body: JSON.stringify(formData)

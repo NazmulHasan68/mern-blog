@@ -21,7 +21,6 @@ const PostSchema = new mongoose.Schema({
     category: {
         type :String,
         default : true,
-        unique : true
     },
     slug:{
         type :String,
