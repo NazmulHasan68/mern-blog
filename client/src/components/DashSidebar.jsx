@@ -36,7 +36,7 @@ function DashSidebar() {
   };
 
   return (
-    <Sidebar aria-label="Default sidebar example" className="w-full sm:w-56">
+    <Sidebar aria-label="Default sidebar example" className="w-full sm:w-56 shadow-md">
       <Sidebar.Logo href="#">shadow</Sidebar.Logo>
       <Sidebar.Items>
         <Sidebar.ItemGroup className="flex flex-col gap-1">

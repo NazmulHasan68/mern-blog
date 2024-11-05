@@ -11,7 +11,7 @@ import { FaGithub } from "react-icons/fa";
 
 export default function FooterComponent() {
   return (
-    <Footer className="border border-t-8 border-teal-500">
+    <Footer className="border border-t-4 border-teal-500">
       <div className="w-full max-w-7xl mx-auto py-2">
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4 mt-4 mx-auto px-5 items-start">
           <div className="mt-0">
