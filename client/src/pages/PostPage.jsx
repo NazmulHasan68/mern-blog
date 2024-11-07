@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import {Link, useParams} from 'react-router-dom'
 import leftImage from '../assets/banner left.png'
 import RightImage from '../assets/rightimag.png'
+import CallToAction from '../components/CallToAction'
 function PostPage() {
     const {postSlug} = useParams()
     const [loading, setloading] = useState(true)
@@ -43,7 +44,7 @@ function PostPage() {
 
   return (
     <div className='flex justify-between items-start max-w-7xl min-h-screen mx-auto px-4'>
-        <div className='hidden md:block basis-1/3 w-full h-screen p-16 -mt-2 ' >
+        <div className='hidden md:block basis-1/3 w-full h-[550px] p-16 -mt-2 ' >
                 <img src={leftImage} alt='left side image' className='w-full h-full shadow-lg'/>
         </div>
         <main className='p-3 flex flex-col mx-auto md:h-[580px] custom-scrollbar md:overflow-auto md:basis-2/3'>
@@ -59,8 +60,11 @@ function PostPage() {
             <div className='p-3 max-w-2xl mx-auto w-full post-content' dangerouslySetInnerHTML={{__html:post && post.content}}>
 
             </div>
+            <div className='max-w-2xl mx-auto'>
+                <CallToAction/>
+            </div>
         </main>
-        <div className='hidden md:block basis-1/3 w-full h-screen p-16 -mt-2' >
+        <div className='hidden md:block basis-1/3 w-full h-[550px] p-16 -mt-2' >
                 <img src={RightImage} alt='left side image' className='w-full h-full shadow-lg'/>
         </div>
     </div>
