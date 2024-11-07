@@ -4,6 +4,7 @@ import {Link, useParams} from 'react-router-dom'
 import leftImage from '../assets/banner left.png'
 import RightImage from '../assets/rightimag.png'
 import CallToAction from '../components/CallToAction'
+import CommentSection from '../components/CommentSection'
 function PostPage() {
     const {postSlug} = useParams()
     const [loading, setloading] = useState(true)
@@ -47,7 +48,7 @@ function PostPage() {
         <div className='hidden md:block basis-1/3 w-full h-[550px] p-16 -mt-2 ' >
                 <img src={leftImage} alt='left side image' className='w-full h-full shadow-lg'/>
         </div>
-        <main className='p-3 flex flex-col mx-auto md:h-[580px] custom-scrollbar md:overflow-auto md:basis-2/3'>
+        <main className='p-3 flex flex-col mx-auto md:h-[650px] custom-scrollbar md:overflow-auto md:basis-2/3'>
             <h1 className='text-2xl ms:text-3xl lg:text-4xl mt-5 sm:mt-10 text-center font-serif max-w-2xl mx-auto text-teal-600'>{post && post.title}</h1>
             <Link to={`/search?category=${post && post.category}`} >
                 <Button color='grey' size='sm'  className='text-center border-2 rounded-full mx-auto my-4'>{post?.category || 'No category'}</Button>
@@ -62,6 +63,9 @@ function PostPage() {
             </div>
             <div className='max-w-2xl mx-auto'>
                 <CallToAction/>
+            </div>
+            <div>
+                <CommentSection postId={post && post._id}/>
             </div>
         </main>
         <div className='hidden md:block basis-1/3 w-full h-[550px] p-16 -mt-2' >

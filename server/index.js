@@ -39,6 +39,10 @@ app.use('/api/auth', AuthRooute)
 import PostRouter from './routes/post.route.js';
 app.use('/api/post', PostRouter)
 
+//coment router
+import Commentrouter from './routes/comment.route.js';
+app.use('/api/comment', Commentrouter)
+
 
 
 //middleware for error handle
