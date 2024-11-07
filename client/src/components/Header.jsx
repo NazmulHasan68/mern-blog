@@ -39,12 +39,12 @@ export default function Header() {
   
 
   return (
-    <Navbar fluid={true} className="border-b">
+    <Navbar fluid={true} className="border-b ">
       <Link to="/"className="self-center whitespace-nowrap font-semibold dark:text-white text-md sm:text-2xl">
-      <span className="px-2 py-1 text-green-500 text-shadow-xl rounded">
-        Shadow
-      </span>
-        Blog
+        <span className="px-2 py-1 text-green-500 text-shadow-xl rounded">
+          Shadow
+        </span>
+          Blog
       </Link>
 
       {/* middle part of the navigatiobar */}
@@ -67,7 +67,7 @@ export default function Header() {
         <AiOutlineSearch size={20} /> 
       </Button>
       
-
+    {/* profile Dropdown */}
       <div className="flex justify-between items-center gap-2 sm:order-2">
         <Button className="w-10 h-10 flex justify-center items-center" 
           color="gray"
@@ -112,7 +112,8 @@ export default function Header() {
        
         <Navbar.Toggle />
       </div>
-      <Navbar.Collapse>
+
+      <Navbar.Collapse className="md:hidden">
         <Navbar.Link as={'div'} className={path === '/' ? 'text-green-500' : 'text-gray-500'}>
           <Link to="/">Home</Link>
         </Navbar.Link>
