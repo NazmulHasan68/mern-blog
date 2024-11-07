@@ -1,5 +1,5 @@
 
-import { Button, Modal, Table } from "flowbite-react";
+import { Alert, Button, Modal, Table } from "flowbite-react";
 import { useEffect, useState } from "react"
 import { HiCheck, HiOutlineExclamationCircle } from "react-icons/hi";
 import { HiMiniXMark } from "react-icons/hi2";
@@ -47,10 +47,9 @@ function DashPost() {
     }
   }
 
-  //baki
   const handleDeleteUser = async () => {
     try {
-      const res = await fetch(`/api/user/deleteuser/${userIdToDelete}/${currentUser._id}`, {
+      const res = await fetch(`/api/user/delete/${userIdToDelete}`, {
         method: 'DELETE',
       });
       const data = await res.json();
@@ -61,6 +60,7 @@ function DashPost() {
         // Optimistically update the UI
         setUsers((prev) => prev.filter((post) => post._id !== userIdToDelete));
         setShowModel(false)
+        Alert('User is deleted successfully!')
       }
     } catch (error) {
       console.error(error.message);

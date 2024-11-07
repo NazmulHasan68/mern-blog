@@ -72,7 +72,7 @@ export const updateUserController = async (req, res, next) => {
 
 
 export const deleteUserController = async(req, res, next)=>{
-    if(req.user.id !== req.params.userId){
+    if(!req.user.isAdmin && req.user.id !== req.params.userId){
         next(errorHandler(403, 'Your are not allowed to delete this user'))
     }
 
@@ -137,3 +137,4 @@ export const getUserController = async(req, res, next)=>{
         next(error)   
     }
 }
+
