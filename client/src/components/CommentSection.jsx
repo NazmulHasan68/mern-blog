@@ -77,6 +77,13 @@ function CommentSection({postId}) {
             console.error(error)
         }
     }
+
+    const handleEdit = async (comment, editedContent) =>{
+        setcomments(
+            comments.map((c)=>
+            c._id === comment._id ? {...c, content:editedContent} : c)
+        )
+    }
   return (
     <div className="my-4 text-gray-600 dark:text-white font-semibold">
       {
@@ -130,7 +137,7 @@ function CommentSection({postId}) {
                    {
                      comments.map((com, index)=>(
                         <div key={index}>
-                            <Comment com={com} onLike={handleLike}/>
+                            <Comment com={com} onLike={handleLike} onEdit={handleEdit}/>
                         </div>
                     ))
                    }
