@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Sidebar } from "flowbite-react";
-import { HiDocumentText, HiTable, HiUser } from "react-icons/hi";
+import { HiDocumentText, HiTable, HiUser, HiUsers } from "react-icons/hi";
 import { signOutSuccess } from "../redux/userSlice/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -62,6 +62,17 @@ function DashSidebar() {
                 as="div"
             >
               Posts
+            </Sidebar.Item>
+          </Link>
+          <Link to="/dashboard?tab=users">
+            <Sidebar.Item
+                href="#"
+                active={tab === "users"}
+                icon={HiUsers}
+                labelColor="dark"
+                as="div"
+            >
+              users
             </Sidebar.Item>
           </Link>
           <Link to="/dashboard?tab=logout" onClick={handleSignOut}>
