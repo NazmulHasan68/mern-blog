@@ -8,4 +8,5 @@ PostRouter.get('/getpost', getPostController)
 PostRouter.delete('/deletepost/:postId/:userId', verifyToken, deletePostController)
 PostRouter.put('/updatepost/:postId/:userId', verifyToken, updatepostController)
 
+
 export default PostRouter

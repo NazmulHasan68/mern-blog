@@ -43,7 +43,7 @@ function DashPost() {
         }
       }
     } catch (error) {
-      console.log(error.message);
+      console.error(error); 
     }
   }
 
@@ -63,14 +63,11 @@ function DashPost() {
         Alert('User is deleted successfully!')
       }
     } catch (error) {
-      console.error(error.message);
+      console.error(error); 
       alert("An error occurred: " + error.message);
     }
   };
   
-  console.log(users);
-  
-
   return (
     <div className="w-[98%] sm:overflow-hidden overflow-auto scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-400 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-400">
      {currentUser.isAdmin && users.length > 0 ? (

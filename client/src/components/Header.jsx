@@ -31,7 +31,7 @@ export default function Header() {
             navigate('/')
         }
     } catch (error) {
-        console.log(error.message);
+      console.error(error); 
     }
   }
 

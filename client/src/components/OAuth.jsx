@@ -31,9 +31,7 @@ export default function OAuth() {
             if(res.ok){
                 dispatch(signInsuccess(data))
                 navigate('/')
-            }
-            console.log(data);
-            
+            }   
         } catch (error) {
             console.error('Error during sign-in:', error);
         }

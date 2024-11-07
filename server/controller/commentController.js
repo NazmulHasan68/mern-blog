@@ -22,3 +22,12 @@ export  const createCommentController = async(req, res, next)=>{
     
 }
 
+
+export const getcommentController = async(req, res, next)=>{
+    try {
+        const comments = await Comment.find({postId:req.params.postId}).sort({createdAt:-1})
+        res.status(200).json({data:comments})
+    } catch (error) {
+        next(error)
+    }
+}

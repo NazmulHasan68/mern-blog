@@ -34,7 +34,7 @@ function UpdatePost() {
                 }
                 setFormData(data.posts[0]);
             } catch (error) {
-                console.log(error.message);
+                console.error(error); 
             } finally {
                 setLoading(false); // Stop loading
             }
@@ -64,9 +64,6 @@ function UpdatePost() {
         }
     };
 
-
-
-    console.log(formData._id);
     
     const submitFormData = async (e) => {
         e.preventDefault();

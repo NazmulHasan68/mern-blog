@@ -101,7 +101,7 @@ function DashProfile() {
                 dispatch(signOutSuccess())
             }
         } catch (error) {
-            console.log(error.message);
+            console.error(error); 
         }
     }
 

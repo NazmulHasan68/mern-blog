@@ -1,12 +1,15 @@
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import {Alert, Button, Textarea} from 'flowbite-react'
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import Comment from "./Comment"
 function CommentSection({postId}) {
     
     const {currentUser} = useSelector(state=>state.user)
     const [comment, setcomment] = useState('')
     const [commentError, setcommentError] = useState(null)
+    const [comments, setcomments]= useState('')
+
     const handleSubmit = async(e)=>{
         e.preventDefault()
         if(comment.length > 200){
@@ -20,10 +23,11 @@ function CommentSection({postId}) {
             },
             body : JSON.stringify({content:comment, postId, userId:currentUser._id})
         })
-        const data = await res.json()
+       const data = await res.json()
         if(res.ok){
             setcomment('')
             setcommentError(null)
+            setcomments([data, ...comments])
         }
        } catch (error) {
         setcommentError(error.message)
@@ -31,6 +35,24 @@ function CommentSection({postId}) {
         
        
     }
+
+
+
+    useEffect(()=>{
+        const getComments = async()=>{
+            try {
+                const res = await fetch(`/api/comment/getcomment/${postId}`)
+                if(res.ok){
+                    const data = await res.json()
+                    setcomments(data.data)
+                }
+            } catch (error) {
+               console.error(error); 
+            }
+        }
+        getComments()
+    },[postId])
+    console.log(comments);
   return (
     <div className="my-4 text-gray-600 dark:text-white font-semibold">
       {
@@ -62,10 +84,35 @@ function CommentSection({postId}) {
                     <p className="text-gray-500 text-sm">{200 - comment.length} characters remining </p>
                     <Button outline gradientDuoTone="greenToBlue" type="submit">Sumbit</Button>
                 </div>
-                <Alert color="failure">
-                    {commentError && ({commentError})}
-                </Alert>
+                {
+                   commentError? (
+                   <Alert color="failure" className="my-2">
+                    {commentError }
+                    </Alert>): null
+                }
+                
             </form>
+           {
+            comments.length === 0 ? (
+                <p className="text-sm my-4">No comment yet!</p>
+            ):(
+                <>
+                    <div className="text-sm my-4 flex items-center gap-1">
+                        <p>Comments</p>
+                        <div className="border border-gray-400 py-1 px-2 rounded-md">
+                            <p>{comments.length}</p>
+                        </div>
+                    </div>
+                   {
+                     comments.map((com, index)=>(
+                        <div key={index}>
+                            <Comment com={com}/>
+                        </div>
+                    ))
+                   }
+                </>
+            )
+           }
         </>
         )
       }

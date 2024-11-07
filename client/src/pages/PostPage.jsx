@@ -31,7 +31,6 @@ function PostPage() {
             } catch (error) {
                 setEroor(true)
                 setloading(false)
-                console.log(error.message);
             }
         }
         fetchPost()
@@ -48,7 +47,7 @@ function PostPage() {
         <div className='hidden md:block basis-1/3 w-full h-[550px] p-16 -mt-2 ' >
                 <img src={leftImage} alt='left side image' className='w-full h-full shadow-lg'/>
         </div>
-        <main className='p-3 flex flex-col mx-auto md:h-[650px] custom-scrollbar md:overflow-auto md:basis-2/3'>
+        <main className='p-3 flex flex-col mx-auto md:h-[650px] custom-scrollbar md:overflow-auto md:basis-2/3 shadow-md'>
             <h1 className='text-2xl ms:text-3xl lg:text-4xl mt-5 sm:mt-10 text-center font-serif max-w-2xl mx-auto text-teal-600'>{post && post.title}</h1>
             <Link to={`/search?category=${post && post.category}`} >
                 <Button color='grey' size='sm'  className='text-center border-2 rounded-full mx-auto my-4'>{post?.category || 'No category'}</Button>
