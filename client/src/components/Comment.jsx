@@ -4,7 +4,7 @@ import { FaRegThumbsUp, FaThumbsUp } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Button, Textarea } from "flowbite-react";
 
-function Comment({ com, onLike, onEdit }) {
+function Comment({ com, onLike, onEdit, onDelete }) {
   // Local states for user data, editing mode, and edited content
   const [user, setUser] = useState();
   const { currentUser } = useSelector((state) => state.user);
@@ -115,7 +115,7 @@ function Comment({ com, onLike, onEdit }) {
               <button
                 onClick={() => onLike(com._id)}
                 className={`text-gray-400 hover:text-blue-600 cursor-pointer ${
-                  currentUser && com.likes.includes(currentUser._id) && '!text-blue-600'
+                  currentUser && com?.likes?.includes(currentUser._id) && '!text-blue-600'
                 }`}
               >
                 <FaThumbsUp className="text-sm" />
@@ -129,13 +129,22 @@ function Comment({ com, onLike, onEdit }) {
 
               {/* Show edit button if the current user is the author or an admin */}
               {currentUser && (currentUser._id === com.userId || currentUser.isAdmin) && (
+                <>
                 <button
-                  type="button"
-                  onClick={handleEdit}
-                  className="text-gray-400 hover:text-blue-500 text-xs"
-                >
-                  Edit
+                    type="button"
+                    onClick={handleEdit}
+                    className="text-gray-400 hover:text-blue-500 text-xs"
+                    >
+                    Edit
                 </button>
+                <button
+                    type="button"
+                    onClick={()=>onDelete(com._id)}
+                    className="text-gray-400 hover:text-red-500 text-xs"
+                >
+                    Delete
+                </button>
+                </>
               )}
             </div>
           </>
