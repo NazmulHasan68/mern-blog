@@ -5,11 +5,30 @@ import leftImage from '../assets/banner left.png'
 import RightImage from '../assets/rightimag.png'
 import CallToAction from '../components/CallToAction'
 import CommentSection from '../components/CommentSection'
+import PostCart from '../components/PostCart'
 function PostPage() {
     const {postSlug} = useParams()
     const [loading, setloading] = useState(true)
     const [Error, setEroor] = useState(false)
     const [post, setPost] = useState(null)
+    const[recentPosts, setRecetPost] = useState()
+
+    useEffect(()=>{
+        try {
+            const fetchRescentpost = async()=>{
+                const res = await fetch(`/api/post/getpost?limit=3`)
+                const data = await res.json()
+                if(res.ok){
+                    setRecetPost(data.posts)
+                }
+            }
+            fetchRescentpost()
+        } catch (error) {
+            console.log(error);
+        }
+    },[])
+    console.log(recentPosts);
+    
 
     useEffect(()=>{
         const fetchPost = async()=>{
@@ -42,6 +61,8 @@ function PostPage() {
         </div>
     )
 
+
+
   return (
     <div className='flex justify-between items-start max-w-7xl min-h-screen mx-auto px-4'>
         <div className='hidden md:block basis-1/3 w-full h-[550px] p-16 -mt-2 ' >
@@ -65,6 +86,16 @@ function PostPage() {
             </div>
             <div>
                 <CommentSection postId={post && post._id}/>
+            </div>
+            <div className='flex flex-col justify-center items-center mb-5'>
+                <h2 className='text-xl mt-5'>Recent Articales</h2>
+                <div className='flex gap-2 flex-col sm:flex-row m-2'>
+                    {
+                        recentPosts && recentPosts.map((post)=>(
+                            <PostCart key={post._id} post={post}/>
+                        ))
+                    }
+                </div>
             </div>
         </main>
         <div className='hidden md:block basis-1/3 w-full h-[550px] p-16 -mt-2' >
