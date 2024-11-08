@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
 function PostCart({post}) {
   return (
-    <div className="group relative w-full border h-[300px] sm:h-[170px] overflow-hidden rounded-lg  sm:w-[170px] ">
+    <div className="group relative w-full border h-[300px] sm:h-[170px] lg:h-[400px] overflow-hidden rounded-lg  sm:w-[170px] lg:w-[300px]">
       <Link to={`/post/${post.slug}`}>
-        <img src={post.image} alt="post cover" className="sm:h-[120px] h-[180px] w-full object-cover sm:group-hover:h-[130px] group-hover:h-[200px] transition-all duration-300 z-20"/>
+        <img src={post.image} alt="post cover" className="sm:h-[120px] h-[180px] lg:h-[280px] w-full object-cover lg:group-hover:h-[300px] sm:group-hover:h-[130px] group-hover:h-[200px] transition-all duration-300 z-20"/>
       </Link>
       <div className="flex flex-col gap-1">
         <p className="sm:text-sm text-md font-semibold px-4 line-clamp-2">{post.title}</p>

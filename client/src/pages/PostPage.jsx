@@ -87,9 +87,9 @@ function PostPage() {
             <div>
                 <CommentSection postId={post && post._id}/>
             </div>
-            <div className='flex flex-col justify-center items-center mb-5'>
+            <div className='flex flex-col justify-center items-center mb-5 '>
                 <h2 className='text-xl mt-5'>Recent Articales</h2>
-                <div className='flex gap-2 flex-col sm:flex-row m-2'>
+                <div className='flex gap-2 flex-col sm:flex-row m-2 w-full overflow-x-auto'>
                     {
                         recentPosts && recentPosts.map((post)=>(
                             <PostCart key={post._id} post={post}/>
