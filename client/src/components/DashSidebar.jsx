@@ -5,6 +5,7 @@ import { HiDocumentText, HiTable, HiUser, HiUsers } from "react-icons/hi";
 import { FaCommentAlt } from "react-icons/fa";
 import { signOutSuccess } from "../redux/userSlice/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { MdDashboard } from "react-icons/md";
 
 function DashSidebar() {
   const location = useLocation();
@@ -41,13 +42,24 @@ function DashSidebar() {
       <Sidebar.Logo href="#">shadow</Sidebar.Logo>
       <Sidebar.Items>
         <Sidebar.ItemGroup className="flex flex-col gap-1">
+          <Link to="/dashboard?tab=dashbord">
+              <Sidebar.Item
+                  href="#"
+                  active={tab === "dashbord"}
+                  icon={MdDashboard}
+                  labelColor="light"
+                  as="div"
+              >
+                  Dashboard
+                </Sidebar.Item>
+            </Link>
 
           <Link to="/dashboard?tab=profile">
             <Sidebar.Item
                 href="#"
                 active={tab === "profile"}
-                icon={HiUser}
                 label={currentUser.isAdmin ? "Admin" : "User"}
+                icon={HiUser}
                 labelColor="light"
                 as="div"
             >
