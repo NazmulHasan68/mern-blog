@@ -9,6 +9,7 @@ import { FaUserCircle, FaSignOutAlt } from "react-icons/fa"; // Import icons
 
 import { toggleTheme } from '../redux/theme/ThemSlice';
 import { signOutSuccess } from "../redux/userSlice/userSlice";
+import { useEffect, useState } from "react";
 
 export default function Header() {
   const navigate = useNavigate()
@@ -16,6 +17,10 @@ export default function Header() {
   const {currentUser} = useSelector(state=>state.user)
   const dispatch = useDispatch()
   const {theme} = useSelector(state=>state.theme)
+
+  // for search option
+  const [searchTerm, setSearchTerm] = useState('')
+  const location = useLocation()
 
   const handleSignOut = async() =>{
     try {
@@ -34,8 +39,22 @@ export default function Header() {
       console.error(error); 
     }
   }
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const searchTermFromUrl = urlParams.get("searchTerm");
+    if (searchTermFromUrl) {
+      setSearchTerm(searchTermFromUrl);
+    }
+  }, [location.search]);
 
-
+  // Handle form submission to update URL
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set("searchTerm", searchTerm);
+    const searchQuery = urlParams.toString();
+    navigate(`/search?${searchQuery}`);
+  };
   
 
   return (
@@ -49,10 +68,12 @@ export default function Header() {
 
       {/* middle part of the navigatiobar */}
       <div className="flex justify-center gap-4">
-          <form className="relative hidden sm:inline">
+          <form className="relative hidden sm:inline" onSubmit={handleSubmit}>
             <TextInput 
               type="text"
               placeholder="Search...."
+              value={searchTerm}
+              onChange={(e)=>setSearchTerm(e.target.value)}
               className=" hidden sm:inline"
             />
             <AiOutlineSearch className="absolute right-2 top-3 text-gray-500 text-xl"/>

@@ -24,7 +24,6 @@ export default function Home() {
     }}
     fetchPost()
   },[])
-console.log(post);
 
   return (
     <div >
@@ -53,7 +52,7 @@ console.log(post);
         {
           post && post.posts?.length > 0 && (
             <div className="w-full">
-              <h2 className="text-center text-2xl font-semibold">Resnt Post</h2>
+              <h2 className="text-center text-2xl font-semibold">Resent Post</h2>
               <div className="flex flex-wrap gap-4 justify-center mt-8 mx-14 sm:mx-0">
                 {
                   post.posts?.map((post)=>(
