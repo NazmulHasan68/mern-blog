@@ -46,7 +46,8 @@ app.use('/api/post', PostRouter)
 import Commentrouter from './routes/comment.route.js';
 app.use('/api/comment', Commentrouter)
 
-app.use(express.static(path.json(__dirname, '/client/dist')))
+// app.use(express.static(path.json(__dirname, '/client/dist')))
+app.use(express.static(path.join(__dirname, '/client/build')));
 app.get('*', (req, res)=>{
   res.sendFile(path.json(__dirname, 'client', 'dist', 'index.html'))
 })
