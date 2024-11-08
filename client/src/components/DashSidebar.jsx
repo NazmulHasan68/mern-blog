@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Sidebar } from "flowbite-react";
 import { HiDocumentText, HiTable, HiUser, HiUsers } from "react-icons/hi";
+import { FaCommentAlt } from "react-icons/fa";
 import { signOutSuccess } from "../redux/userSlice/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -73,6 +74,17 @@ function DashSidebar() {
                 as="div"
             >
               users
+            </Sidebar.Item>
+          </Link>
+          <Link to="/dashboard?tab=comments">
+            <Sidebar.Item
+                href="#"
+                active={tab === "comments"}
+                icon={FaCommentAlt}
+                labelColor="dark"
+                as="div"
+            >
+              Comments
             </Sidebar.Item>
           </Link>
           <Link to="/dashboard?tab=logout" onClick={handleSignOut}>
