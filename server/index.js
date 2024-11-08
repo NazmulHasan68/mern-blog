@@ -5,6 +5,9 @@ dotenv.config();
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 
+import path from 'path'
+const __dirname = path.resolve()
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -42,6 +45,11 @@ app.use('/api/post', PostRouter)
 //coment router
 import Commentrouter from './routes/comment.route.js';
 app.use('/api/comment', Commentrouter)
+
+app.use(express.static(path.json(__dirname, '/client/dist')))
+app.get('*', (req, res)=>{
+  res.sendFile(path.json(__dirname, 'client', 'dist', 'index.html'))
+})
 
 
 
